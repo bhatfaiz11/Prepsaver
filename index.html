@@ -23,7 +23,7 @@ overflow-x:hidden;
 }
 
 
-/* Background Slider */
+/* Medical Background Slider */
 
 .bg-slider{
 position:fixed;
@@ -43,7 +43,6 @@ opacity:0;
 animation:slide 40s infinite;
 }
 
-
 .bg-slider img:nth-child(1){animation-delay:0s;}
 .bg-slider img:nth-child(2){animation-delay:5s;}
 .bg-slider img:nth-child(3){animation-delay:10s;}
@@ -53,14 +52,12 @@ animation:slide 40s infinite;
 .bg-slider img:nth-child(7){animation-delay:30s;}
 .bg-slider img:nth-child(8){animation-delay:35s;}
 
-
 @keyframes slide{
 
 0%{opacity:0;}
 5%{opacity:.35;}
 12%{opacity:.35;}
 15%{opacity:0;}
-
 100%{opacity:0;}
 
 }
@@ -77,7 +74,6 @@ background:rgba(255,255,255,.82);
 z-index:-1;
 
 }
-
 
 
 /* Header */
@@ -114,9 +110,7 @@ margin-top:8px;
 }
 
 
-
 /* Hero */
-
 
 .hero{
 
@@ -148,9 +142,6 @@ font-size:18px;
 line-height:1.6;
 
 }
-
-
-
 .btn{
 
 display:inline-block;
@@ -180,8 +171,7 @@ color:white;
 
 
 
-/* Offer */
-
+/* Coupon Offer */
 
 .offer{
 
@@ -219,7 +209,6 @@ cursor:pointer;
 }
 
 
-
 .cashback{
 
 margin-top:25px;
@@ -231,8 +220,7 @@ border-radius:20px;
 
 
 
-/* Courses */
-
+/* Course Cards */
 
 .courses{
 
@@ -266,8 +254,7 @@ margin-bottom:10px;
 
 
 
-/* Quote */
-
+/* Motivation */
 
 .quote{
 
@@ -281,7 +268,6 @@ font-style:italic;
 }
 
 
-
 footer{
 
 background:#020617;
@@ -292,6 +278,16 @@ padding:20px;
 }
 
 
+
+@media(max-width:600px){
+
+.hero h1{
+
+font-size:32px;
+
+}
+
+}
 
 </style>
 
@@ -318,7 +314,6 @@ padding:20px;
 <div class="overlay"></div>
 
 
-
 <header>
 
 <div class="logo">
@@ -335,10 +330,8 @@ Smart Savings For Medical Aspirants
 
 <section class="hero">
 
-
 <h1>
-Unlock Premium <span>Medical Courses</span>
-Offers
+Unlock Premium <span>Medical Courses</span> Offers
 </h1>
 
 
@@ -368,11 +361,7 @@ target="_blank">
 </section>
 
 
-
-
-
 <section class="offer">
-
 
 <h2>
 Exclusive Coupon Code
@@ -396,9 +385,7 @@ Copy Coupon Code
 </button>
 
 
-
 <div class="cashback">
-
 
 <h3>
 🎁 Cashback Offer
@@ -416,7 +403,8 @@ Depends on Course Value
 
 
 <a class="btn whatsapp"
-href="https://wa.me/919797757617">
+href="https://wa.me/919797757617"
+target="_blank">
 
 Contact Here For Cashback Details
 
@@ -427,35 +415,30 @@ Contact Here For Cashback Details
 
 
 </section>
-
-
-
-
-
 <section class="courses">
 
 
 <div class="card">
 <h3>NEET PG Live Classes</h3>
-<p>Complete preparation with expert guidance.</p>
+<p>Complete preparation with expert guidance and premium resources.</p>
 </div>
 
 
 <div class="card">
 <h3>FMGE Live Classes</h3>
-<p>Focused preparation for FMGE aspirants.</p>
+<p>Focused preparation for FMGE aspirants with structured learning.</p>
 </div>
 
 
 <div class="card">
-<h3>INICET</h3>
-<p>Advanced medical entrance preparation.</p>
+<h3>INICET Preparation</h3>
+<p>Advanced preparation support for medical entrance exams.</p>
 </div>
 
 
 <div class="card">
 <h3>SS Residency</h3>
-<p>Speciality preparation programs.</p>
+<p>Speciality preparation programs for future doctors.</p>
 </div>
 
 
@@ -466,8 +449,7 @@ Contact Here For Cashback Details
 
 <section class="quote">
 
-<p id="quoteText">
-</p>
+<p id="quoteText"></p>
 
 </section>
 
@@ -476,9 +458,12 @@ Contact Here For Cashback Details
 
 <footer>
 
-© 2026 PrepSaver
+<p>
+© 2026 PrepSaver | Medical Education Offers
+</p>
 
 </footer>
+
 
 
 
@@ -490,7 +475,7 @@ function copyCoupon(){
 
 navigator.clipboard.writeText("RABZ11");
 
-alert("Coupon RABZ11 copied!");
+alert("Coupon Code RABZ11 Copied!");
 
 }
 
@@ -516,9 +501,14 @@ let quotes=[
 
 "Never stop learning because medicine never stops evolving.",
 
-"Your dedication today will heal lives tomorrow."
+"Your dedication today will heal lives tomorrow.",
+
+"Great doctors are built through consistency and commitment.",
+
+"Every chapter you complete takes you closer to your white coat dream."
 
 ];
+
 
 
 let index=0;
@@ -529,6 +519,7 @@ function changeQuote(){
 document.getElementById("quoteText").innerHTML=quotes[index];
 
 index++;
+
 
 if(index>=quotes.length){
 
@@ -549,4 +540,5 @@ setInterval(changeQuote,5000);
 
 
 </body>
-</html>
+
+  </html>
