@@ -4,215 +4,348 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PrepSaver - Best Medical Course Offers</title>
+<title>PrepSaver | Medical Course Offers</title>
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',Arial,sans-serif;
 }
 
 body{
-    background:#f7f9fc;
-    color:#222;
+background:#f8fafc;
+color:#1e293b;
+overflow-x:hidden;
 }
 
+/* Floating Background */
+.medical-bg span{
+position:fixed;
+font-size:45px;
+opacity:.08;
+animation:float 15s linear infinite;
+z-index:-1;
+}
+
+.medical-bg span:nth-child(1){left:10%;top:20%;}
+.medical-bg span:nth-child(2){left:70%;top:15%;animation-delay:3s;}
+.medical-bg span:nth-child(3){left:40%;top:70%;animation-delay:6s;}
+.medical-bg span:nth-child(4){left:85%;top:60%;animation-delay:9s;}
+
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-60px);}
+100%{transform:translateY(0);}
+}
+
+
 header{
-    background:#111827;
-    color:white;
-    padding:25px;
-    text-align:center;
+background:linear-gradient(135deg,#0f172a,#1d4ed8);
+color:white;
+padding:25px;
+text-align:center;
 }
 
 .logo{
-    font-size:32px;
-    font-weight:bold;
+font-size:35px;
+font-weight:800;
 }
 
+header p{
+margin-top:8px;
+}
+
+
+/* Hero */
+
 .hero{
-    padding:50px 20px;
-    text-align:center;
-    background:white;
+padding:70px 20px;
+text-align:center;
 }
 
 .hero h1{
-    font-size:38px;
-    color:#111827;
+font-size:42px;
+color:#0f172a;
 }
 
 .hero span{
-    color:#e11d48;
+color:#2563eb;
 }
 
 .hero p{
-    margin:20px auto;
-    max-width:600px;
-    font-size:18px;
+max-width:700px;
+margin:20px auto;
+font-size:18px;
+line-height:1.6;
 }
+
 
 .btn{
-    display:inline-block;
-    margin-top:20px;
-    padding:15px 35px;
-    background:#e11d48;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-weight:bold;
+display:inline-block;
+margin:10px;
+padding:15px 30px;
+border-radius:30px;
+text-decoration:none;
+font-weight:bold;
+transition:.3s;
 }
 
+.primary{
+background:#2563eb;
+color:white;
+}
+
+.whatsapp{
+background:#16a34a;
+color:white;
+}
+
+.btn:hover{
+transform:scale(1.05);
+}
+
+
+/* Offer */
+
 .offer{
-    background:#111827;
-    color:white;
-    margin:30px 15px;
-    padding:30px;
-    border-radius:20px;
-    text-align:center;
+margin:30px auto;
+max-width:700px;
+background:white;
+padding:35px;
+border-radius:25px;
+box-shadow:0 10px 30px #dbeafe;
+text-align:center;
 }
 
 .coupon{
-    font-size:35px;
-    color:#facc15;
-    font-weight:bold;
-    margin:15px;
+font-size:42px;
+font-weight:900;
+color:#dc2626;
+margin:15px;
 }
+
+
+.copy{
+background:#0f172a;
+color:white;
+border:none;
+padding:12px 25px;
+border-radius:25px;
+cursor:pointer;
+}
+
+
+/* Cards */
 
 .cards{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:20px;
-    padding:30px;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+padding:40px 20px;
 }
+
 
 .card{
-    background:white;
-    width:280px;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 5px 15px #ddd;
-    text-align:center;
+background:white;
+width:260px;
+padding:25px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 5px 20px #e2e8f0;
 }
+
 
 .card h3{
-    color:#e11d48;
-    margin-bottom:15px;
+color:#2563eb;
+margin-bottom:10px;
 }
+
+
+/* Quote */
+
+.quote{
+background:#0f172a;
+color:white;
+padding:50px 20px;
+text-align:center;
+font-size:22px;
+font-style:italic;
+}
+
 
 footer{
-    background:#111827;
-    color:white;
-    padding:20px;
-    text-align:center;
+background:#020617;
+color:white;
+text-align:center;
+padding:20px;
 }
 
+
 @media(max-width:600px){
+
 .hero h1{
-font-size:30px;
+font-size:32px;
 }
+
 }
 </style>
 
 </head>
 
+
 <body>
 
+
+<div class="medical-bg">
+<span>🩺</span>
+<span>📚</span>
+<span>🧬</span>
+<span>👨‍⚕️</span>
+</div>
+
+
 <header>
-<div class="logo">PrepSaver</div>
-<p>Save More On Medical Education</p>
+
+<div class="logo">
+PrepSaver
+</div>
+
+<p>
+Smart Savings For Medical Aspirants
+</p>
+
 </header>
+
 
 
 <section class="hero">
 
-<h1>Get Best Offers On <span>Medical Courses</span></h1>
+<h1>
+Unlock Premium <span>Medical Courses</span> At Best Offers
+</h1>
 
 <p>
-Unlock exclusive discounts on NEET PG, FMGE, INICET, SS Residency and other premium medical preparation courses.
+Get exclusive discounts on NEET PG, FMGE, INICET, SS Residency and other medical preparation courses.
 </p>
 
-<a class="btn" href="https://wa.me/" target="_blank">
-Get Offer Now
+
+<a class="btn primary"
+href="https://prepladder.com/app/org-packages-458--RABZ11"
+target="_blank">
+
+🎁 Claim Exclusive Offer
+
 </a>
+
+
+<a class="btn whatsapp"
+href="https://wa.me/919797757617"
+target="_blank">
+
+💬 WhatsApp Now
+
+</a>
+
 
 </section>
 
 
+
+
 <section class="offer">
 
-<h2>Exclusive Coupon Offer</h2>
+<h2>
+Exclusive Coupon Code
+</h2>
+
 
 <div class="coupon">
 RABZ11
 </div>
 
-<p>
-Get instant discount up to ₹2500 + additional cashback offers.
+
+<button class="copy" onclick="copyCode()">
+
+Copy Coupon
+
+</button>
+
+
+<p style="margin-top:20px;">
+Get instant discount and cashback benefits.
 </p>
 
-<p>
-No Cost EMI Available
-</p>
 
 </section>
+
 
 
 
 <section class="cards">
 
+
 <div class="card">
 <h3>NEET PG</h3>
-<p>Premium preparation with amazing savings.</p>
+<p>Premium preparation with exclusive savings.</p>
 </div>
 
 
 <div class="card">
 <h3>FMGE</h3>
-<p>Prepare smarter with discounted courses.</p>
+<p>Prepare smarter with trusted resources.</p>
 </div>
 
 
 <div class="card">
 <h3>INICET</h3>
-<p>Access quality medical learning resources.</p>
+<p>Advanced exam preparation support.</p>
 </div>
 
 
 <div class="card">
 <h3>SS Residency</h3>
-<p>Advanced preparation made affordable.</p>
+<p>Upgrade your medical career journey.</p>
 </div>
 
-</section>
-
-
-
-<section class="hero">
-
-<h2>Why Choose PrepSaver?</h2>
-
-<p>
-✔ Best course deals<br>
-✔ Instant discount assistance<br>
-✔ Cashback opportunities<br>
-✔ Trusted guidance for medical aspirants
-</p>
-
-<a class="btn" href="#">
-Contact Now
-</a>
 
 </section>
+
+
+
+
+<section class="quote">
+
+"The best doctors are not only made in hospitals, they are built through dedication, discipline and endless learning."
+
+</section>
+
 
 
 <footer>
 
-<p>© 2026 PrepSaver. All Rights Reserved.</p>
+<p>
+© 2026 PrepSaver | Medical Education Offers
+</p>
 
 </footer>
 
 
+
+<script>
+
+function copyCode(){
+
+navigator.clipboard.writeText("RABZ11");
+
+alert("Coupon Code RABZ11 Copied!");
+
+}
+
+</script>
+
+
 </body>
-  </html>
+</html>
