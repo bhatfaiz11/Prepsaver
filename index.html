@@ -13,17 +13,17 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Segoe UI',Arial,sans-serif;
+font-family:Arial, sans-serif;
 }
 
 body{
-color:#0f172a;
-background:#f8fafc;
+color:white;
+background:#020617;
 overflow-x:hidden;
 }
 
 
-/* Medical Background Slider */
+/* Animated Background */
 
 .bg-slider{
 position:fixed;
@@ -36,12 +36,13 @@ z-index:-2;
 
 .bg-slider img{
 position:absolute;
-width:100%;
 height:100%;
+width:100%;
 object-fit:cover;
 opacity:0;
-animation:slide 40s infinite;
+animation:change 40s infinite;
 }
+
 
 .bg-slider img:nth-child(1){animation-delay:0s;}
 .bg-slider img:nth-child(2){animation-delay:5s;}
@@ -52,13 +53,28 @@ animation:slide 40s infinite;
 .bg-slider img:nth-child(7){animation-delay:30s;}
 .bg-slider img:nth-child(8){animation-delay:35s;}
 
-@keyframes slide{
 
-0%{opacity:0;}
-5%{opacity:.35;}
-12%{opacity:.35;}
-15%{opacity:0;}
-100%{opacity:0;}
+@keyframes change{
+
+0%{
+opacity:0;
+}
+
+5%{
+opacity:.45;
+}
+
+12%{
+opacity:.45;
+}
+
+15%{
+opacity:0;
+}
+
+100%{
+opacity:0;
+}
 
 }
 
@@ -68,29 +84,35 @@ animation:slide 40s infinite;
 position:fixed;
 top:0;
 left:0;
-width:100%;
 height:100%;
-background:rgba(255,255,255,.82);
+width:100%;
+background:linear-gradient(
+rgba(2,6,23,.75),
+rgba(15,23,42,.85)
+);
+
 z-index:-1;
 
 }
 
 
+
 /* Header */
+
 
 header{
 
-background:linear-gradient(135deg,#0f172a,#2563eb);
-color:white;
-padding:25px;
 text-align:center;
+padding:30px;
+background:rgba(15,23,42,.8);
+backdrop-filter:blur(10px);
 
 }
 
 
 .logo{
 
-font-size:38px;
+font-size:42px;
 font-weight:900;
 
 }
@@ -98,19 +120,22 @@ font-weight:900;
 
 .logo span{
 
-color:#facc15;
+color:#38bdf8;
 
 }
 
 
 header p{
 
-margin-top:8px;
+margin-top:10px;
+font-size:18px;
 
 }
 
 
+
 /* Hero */
+
 
 .hero{
 
@@ -127,29 +152,31 @@ font-size:42px;
 }
 
 
-.hero span{
+.hero h1 span{
 
-color:#2563eb;
+color:#38bdf8;
 
 }
 
 
 .hero p{
 
+font-size:18px;
 max-width:700px;
 margin:20px auto;
-font-size:18px;
 line-height:1.6;
 
 }
+
+
 .btn{
 
 display:inline-block;
 padding:15px 30px;
-margin:10px;
 border-radius:30px;
 text-decoration:none;
 font-weight:bold;
+margin:10px;
 
 }
 
@@ -170,124 +197,7 @@ color:white;
 }
 
 
-
-/* Coupon Offer */
-
-.offer{
-
-background:white;
-max-width:700px;
-margin:30px auto;
-padding:35px;
-border-radius:25px;
-text-align:center;
-box-shadow:0 10px 30px #cbd5e1;
-
-}
-
-
-.coupon{
-
-font-size:32px;
-font-weight:900;
-color:#dc2626;
-letter-spacing:2px;
-margin:15px;
-
-}
-
-
-.copy{
-
-padding:12px 25px;
-border:none;
-border-radius:25px;
-background:#0f172a;
-color:white;
-cursor:pointer;
-
-}
-
-
-.cashback{
-
-margin-top:25px;
-background:#eff6ff;
-padding:25px;
-border-radius:20px;
-
-}
-
-
-
-/* Course Cards */
-
-.courses{
-
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:20px;
-padding:40px 20px;
-
-}
-
-
-.card{
-
-background:white;
-width:260px;
-padding:25px;
-border-radius:20px;
-text-align:center;
-box-shadow:0 5px 20px #dbeafe;
-
-}
-
-
-.card h3{
-
-color:#2563eb;
-margin-bottom:10px;
-
-}
-
-
-
-/* Motivation */
-
-.quote{
-
-background:#0f172a;
-color:white;
-padding:45px 20px;
-text-align:center;
-font-size:22px;
-font-style:italic;
-
-}
-
-
-footer{
-
-background:#020617;
-color:white;
-text-align:center;
-padding:20px;
-
-}
-
-
-
-@media(max-width:600px){
-
-.hero h1{
-
-font-size:32px;
-
-}
-
-}
+/* Background Images */
 
 </style>
 
@@ -321,22 +231,21 @@ font-size:32px;
 </div>
 
 <p>
-Smart Savings For Medical Aspirants
+Premium Medical Learning Offers
 </p>
 
 </header>
 
 
-
 <section class="hero">
 
 <h1>
-Unlock Premium <span>Medical Courses</span> Offers
+Become Future <span>Doctors</span> With Smart Preparation
 </h1>
 
 
 <p>
-Exclusive discounts for NEET PG, FMGE, INICET and SS Residency preparation.
+Exclusive offers for NEET PG, FMGE, INI CET and Residency aspirants.
 </p>
 
 
@@ -359,9 +268,112 @@ target="_blank">
 
 
 </section>
+<style>
+
+.offer{
+
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(15px);
+max-width:700px;
+margin:30px auto;
+padding:35px;
+border-radius:25px;
+text-align:center;
+
+}
+
+
+.coupon{
+
+font-size:34px;
+font-weight:900;
+color:#facc15;
+margin:20px;
+
+}
+
+
+.copy{
+
+padding:12px 25px;
+border:none;
+border-radius:25px;
+background:#38bdf8;
+color:#020617;
+font-weight:bold;
+cursor:pointer;
+
+}
+
+
+.cashback{
+
+margin-top:25px;
+padding:25px;
+border-radius:20px;
+background:rgba(37,99,235,.3);
+
+}
+
+
+.courses{
+
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+padding:40px 20px;
+
+}
+
+
+.card{
+
+width:270px;
+padding:25px;
+border-radius:20px;
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(12px);
+text-align:center;
+
+}
+
+
+.card h3{
+
+color:#38bdf8;
+margin-bottom:12px;
+
+}
+
+
+.quote{
+
+margin-top:30px;
+padding:45px 20px;
+text-align:center;
+background:rgba(2,6,23,.8);
+font-size:24px;
+font-style:italic;
+
+}
+
+
+footer{
+
+text-align:center;
+padding:20px;
+background:#020617;
+
+}
+
+
+</style>
+
 
 
 <section class="offer">
+
 
 <h2>
 Exclusive Coupon Code
@@ -385,7 +397,9 @@ Copy Coupon Code
 </button>
 
 
+
 <div class="cashback">
+
 
 <h3>
 🎁 Cashback Offer
@@ -393,12 +407,12 @@ Copy Coupon Code
 
 
 <p>
-Get Cashback Upto <b>₹1500 to ₹2500</b>
+Cashback upto ₹1500 to ₹2500
 </p>
 
 
 <p>
-Depends on Course Value
+Depends on course value
 </p>
 
 
@@ -415,35 +429,51 @@ Contact Here For Cashback Details
 
 
 </section>
+
+
+
+
+
 <section class="courses">
 
 
 <div class="card">
+<h3>NEET PG</h3>
+<p>Premium preparation support for NEET PG aspirants.</p>
+</div>
+
+
+<div class="card">
+<h3>FMGE</h3>
+<p>Focused preparation for FMGE examination.</p>
+</div>
+
+
+<div class="card">
+<h3>INI CET</h3>
+<p>Advanced preparation for INI CET aspirants.</p>
+</div>
+
+
+<div class="card">
+<h3>NEET SS Residency</h3>
+<p>Speciality preparation programs.</p>
+</div>
+
+
+<div class="card">
 <h3>NEET PG Live Classes</h3>
-<p>Complete preparation with expert guidance and premium resources.</p>
+<p>Learn with structured live classes.</p>
 </div>
 
 
 <div class="card">
 <h3>FMGE Live Classes</h3>
-<p>Focused preparation for FMGE aspirants with structured learning.</p>
-</div>
-
-
-<div class="card">
-<h3>INICET Preparation</h3>
-<p>Advanced preparation support for medical entrance exams.</p>
-</div>
-
-
-<div class="card">
-<h3>SS Residency</h3>
-<p>Speciality preparation programs for future doctors.</p>
+<p>Live classes designed for FMGE success.</p>
 </div>
 
 
 </section>
-
 
 
 
@@ -455,27 +485,19 @@ Contact Here For Cashback Details
 
 
 
-
 <footer>
 
-<p>
-© 2026 PrepSaver | Medical Education Offers
-</p>
+© 2026 PrepSaver
 
-</footer>
-
-
-
-
-
-<script>
+  </footer>
+  <script>
 
 
 function copyCoupon(){
 
 navigator.clipboard.writeText("RABZ11");
 
-alert("Coupon Code RABZ11 Copied!");
+alert("Coupon Code RABZ11 copied!");
 
 }
 
@@ -487,43 +509,43 @@ let quotes=[
 
 "Behind every successful doctor are years of dedication and sacrifice.",
 
-"Medicine demands hard work, but the reward is saving lives.",
-
-"Dream big, study harder, become the doctor you always wanted to be.",
-
-"Small steps every day create great doctors.",
+"Medicine demands hard work but the reward is saving lives.",
 
 "Your books today will become your patients' hope tomorrow.",
 
-"The journey is difficult, but the destination is worth it.",
+"Small steps every day create great doctors.",
 
-"Doctors are made by discipline, compassion and continuous learning.",
+"Dream big, study harder, achieve your white coat dream.",
+
+"Consistency and discipline create successful doctors.",
 
 "Never stop learning because medicine never stops evolving.",
 
-"Your dedication today will heal lives tomorrow.",
+"The journey is difficult but your dream is bigger.",
 
-"Great doctors are built through consistency and commitment.",
+"Future doctors are built through dedication and determination.",
 
-"Every chapter you complete takes you closer to your white coat dream."
+"One more chapter today brings you closer to success.",
+
+"Your preparation today will create your tomorrow."
 
 ];
 
 
-
-let index=0;
+let quoteIndex=0;
 
 
 function changeQuote(){
 
-document.getElementById("quoteText").innerHTML=quotes[index];
+document.getElementById("quoteText").innerHTML =
+quotes[quoteIndex];
 
-index++;
+quoteIndex++;
 
 
-if(index>=quotes.length){
+if(quoteIndex >= quotes.length){
 
-index=0;
+quoteIndex=0;
 
 }
 
@@ -535,10 +557,9 @@ changeQuote();
 setInterval(changeQuote,5000);
 
 
-
 </script>
 
 
 </body>
 
-  </html>
+</html>
