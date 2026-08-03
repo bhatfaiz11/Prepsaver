@@ -1099,3 +1099,27 @@ footer{background:var(--navy-900); border-top:1px solid var(--line); padding:56p
 </script>
 </body>
 </html>
+
+<script>
+const images = [
+"images/doctor1.jpg",
+"images/doctor2.jpg",
+"images/doctor3.jpg",
+"images/doctor4.jpg",
+"images/doctor5.jpg",
+"images/doctor6.jpg",
+"images/doctor7.jpg",
+"images/doctor8.jpg"
+];
+
+let current = 0;
+
+function changeBackground() {
+    current = (current + 1) % images.length;
+
+    document.getElementById("hero").style.backgroundImage =
+        `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('${images[current]}')`;
+}
+
+setInterval(changeBackground, 5000);
+</script>
