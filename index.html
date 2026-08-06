@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PrepSaver | Medical Education Consultant</title>
+<meta name="description" content="PrepSaver — Medical Education Consultant. Expert guidance and exclusive offers on NEET PG, FMGE, INI CET, NEET SS and Residency preparation.">
+
+<!-- ===== Google Analytics (active) ======================================== -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DNE6TMJL3R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DNE6TMJL3R');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   PREPSAVER — DESIGN TOKENS
+   Palette   : deep clinical navy + electric-teal "vitals" accent + warm gold
+               "premium" accent (certification / trust cue).
+   Type      : Fraunces (display serif, editorial authority) / Inter (body) /
+               JetBrains Mono (data — prices, codes, stats).
+   Signature : the "vitals line" — an animated ECG pulse that draws itself
+               between sections, standing in for generic dividers.
+   ========================================================================== */
+:root{
+  --navy-950:#050b18;
+  --navy-900:#0a1730;
+  --navy-800:#0f1f3d;
+  --navy-700:#16294c;
+  --navy-600:#203a68;
+  --line:rgba(151,181,224,0.16);
+  --teal:#3E7BFA;
+  --teal-soft:rgba(62,123,250,0.14);
+  --gold:#E7A93C;
+  --gold-soft:rgba(231,169,60,0.14);
+  --ink-000:#f5f8fd;
+  --ink-300:#a9bcdc;
+  --ink-500:#7590b8;
+  --glass:rgba(16,31,61,0.55);
+  --glass-brd:rgba(151,181,224,0.18);
+  --shadow:0 20px 60px rgba(2,7,18,0.55);
+  --radius:18px;
+  --disp:'Fraunces',serif;
+  --body:'Inter',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(ellipse 900px 500px at 10% -10%, rgba(62,123,250,0.10), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 0%, rgba(231,169,60,0.08), transparent 55%),
+    var(--navy-950);
+  color:var(--ink-000);
+  font-family:var(--body);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+img{max-width:100%; display:block;}
+a{color:inherit; text-decoration:none;}
+button{font-family:inherit; cursor:pointer;}
+:focus-visible{outline:2px solid var(--teal); outline-offset:3px; border-radius:4px;}
+
+.wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+.eyebrow{
+  font-family:var(--mono); font-size:12.5px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--teal); display:inline-flex; align-items:center; gap:10px; margin-bottom:14px;
+}
+.eyebrow::before{content:''; width:20px; height:1px; background:var(--teal);}
+h1,h2,h3,h4{font-family:var(--disp); font-weight:700; margin:0; letter-spacing:-0.01em;}
+.section-title{font-size:clamp(28px,4vw,42px); color:var(--ink-000); line-height:1.15;}
+.section-title em{font-style:italic; color:var(--teal); font-weight:600;}
+.section-sub{color:var(--ink-300); max-width:620px; margin-top:14px; font-size:16px;}
+section{padding:96px 0; position:relative;}
+.head-row{display:flex; flex-direction:column; align-items:flex-start; margin-bottom:52px;}
+@media (max-width:640px){ section{padding:64px 0;} }
+
+.glass{
+  background:var(--glass);
+  border:1px solid var(--glass-brd);
+  border-radius:var(--radius);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:9px;
+  padding:15px 28px; border-radius:11px; font-weight:700; font-size:15px;
+  border:1px solid transparent; transition:transform .22s ease, box-shadow .22s ease, background .22s ease, border-color .22s ease;
+  white-space:nowrap; letter-spacing:.01em;
+}
+.btn-primary{background:linear-gradient(135deg,var(--teal),#2856C7); color:#f5f9ff; box-shadow:0 10px 30px rgba(62,123,250,0.32);}
+.btn-primary:hover{transform:translateY(-2px); box-shadow:0 16px 38px rgba(62,123,250,0.44);}
+.btn-ghost{background:rgba(255,255,255,0.04); color:var(--ink-000); border-color:var(--line);}
+.btn-ghost:hover{background:rgba(255,255,255,0.08); border-color:var(--teal); transform:translateY(-1px);}
+.btn-whatsapp{background:linear-gradient(135deg,#2fbf72,#1f8f57); color:#eafff2; box-shadow:0 10px 30px rgba(47,191,114,0.28);}
+.btn-whatsapp:hover{transform:translateY(-2px); box-shadow:0 16px 36px rgba(47,191,114,0.4);}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#B87F1E); color:#241a06; box-shadow:0 10px 26px rgba(231,169,60,.32);}
+.btn-gold:hover{transform:translateY(-2px); box-shadow:0 16px 32px rgba(231,169,60,.44);}
+.btn-block{width:100%;}
+
+/* ---------- announcement marquee ---------- */
+.marquee-bar{
+  background:var(--navy-900); border-bottom:1px solid var(--line);
+  overflow:hidden; white-space:nowrap; padding:9px 0; position:relative; z-index:60;
+}
+.marquee-track{display:inline-block; padding-left:100%; animation:marquee 22s linear infinite;}
+.marquee-bar:hover .marquee-track{animation-play-state:paused;}
+.marquee-track span{font-family:var(--mono); font-size:13px; letter-spacing:.03em; color:var(--teal); margin-right:60px;}
+@keyframes marquee{ from{transform:translateX(0);} to{transform:translateX(-100%);} }
+
+/* ---------- header ---------- */
+header{
+  position:sticky; top:0; z-index:50;
+  background:rgba(5,11,24,0.72); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0;}
+.logo{display:flex; align-items:center; gap:8px;}
+.logo-stetho{width:22px; height:22px; flex-shrink:0; color:var(--teal);}
+.logo-mark{width:38px; height:38px; flex-shrink:0;}
+.logo-word{font-family:var(--disp); font-weight:700; font-size:21px; letter-spacing:-0.01em; color:var(--ink-000);}
+.logo-word em{font-style:normal; color:var(--teal);}
+.nav-links{display:flex; align-items:center; gap:30px; font-size:14.5px; font-weight:600; color:var(--ink-300);}
+.nav-links a{transition:color .2s;}
+.nav-links a:hover{color:var(--teal);}
+.nav-cta{display:flex; align-items:center; gap:12px;}
+.nav-cta .btn{padding:11px 20px; font-size:13.5px;}
+.hamburger{display:none; flex-direction:column; gap:5px; background:none; border:none; padding:6px;}
+.hamburger span{width:24px; height:2px; background:var(--ink-000); border-radius:2px; transition:.25s;}
+
+@media (max-width:900px){
+  .nav-links{position:fixed; top:0; right:0; height:100vh; width:min(78vw,320px);
+    background:var(--navy-900); border-left:1px solid var(--line); flex-direction:column;
+    justify-content:flex-start; align-items:flex-start; padding:100px 28px 28px; gap:24px;
+    transform:translateX(100%); transition:transform .35s ease; z-index:55;}
+  .nav-links.open{transform:translateX(0);}
+  .nav-cta .btn-ghost{display:none;}
+  .hamburger{display:flex;}
+}
+
+/* ---------- hero ---------- */
+.top-offer-bar{background:var(--navy-900); border-bottom:1px solid var(--line); padding:36px 0;}
+.top-offer-inner{display:flex; gap:14px; flex-wrap:wrap; justify-content:center;}
+.top-offer-card{
+  background:var(--glass); border:1px solid var(--glass-brd); border-radius:14px;
+  padding:16px 20px; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  flex:1 1 280px; max-width:380px;
+}
+.top-offer-label{font-family:var(--mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--teal); display:block; margin-bottom:10px;}
+.top-offer-row{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:12px;}
+.top-offer-sub{font-size:12.5px; color:var(--ink-300);}
+.btn-sm{padding:9px 18px; font-size:13px;}
+
+.hero{position:relative; min-height:92vh; display:flex; align-items:center; overflow:hidden;}
+
+.hero-slides{position:absolute; inset:0; z-index:0;}
+.hero-slide{
+  position:absolute; inset:0; background-size:cover; background-position:center;
+  background-color:var(--navy-800);
+  opacity:0; transition:opacity 1.6s ease;
+}
+.hero-slide.active{opacity:1;}
+/* fallback now handled via background-color on .hero-slide itself, which only shows through if the image URL 404s */
+.hero-scrim{
+  position:absolute; inset:0; z-index:1;
+  background:linear-gradient(100deg, rgba(5,11,24,0.94) 20%, rgba(5,11,24,0.72) 48%, rgba(5,11,24,0.4) 100%),
+             linear-gradient(0deg, rgba(5,11,24,0.95), rgba(5,11,24,0.3) 40%);
+}
+.hero-dots{position:absolute; z-index:2; bottom:28px; left:50%; transform:translateX(-50%); display:flex; gap:8px;}
+.hero-dot{width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,0.3); transition:.3s;}
+.hero-dot.active{background:var(--teal); width:22px; border-radius:4px;}
+
+.counselor-cta{
+  position:absolute; z-index:4; top:16px; left:16px;
+  display:inline-flex; flex-direction:column; align-items:flex-start; gap:1px;
+  background:linear-gradient(135deg,var(--gold),#B87F1E); color:#241a06;
+  padding:9px 15px; border-radius:10px;
+  box-shadow:0 8px 22px rgba(231,169,60,.4);
+  animation:counselor-pulse 2.4s ease-in-out infinite;
+  transition:transform .2s ease;
+}
+.counselor-cta:hover{transform:translateY(-2px) scale(1.02);}
+.counselor-cta-main{font-family:var(--disp); font-weight:700; font-size:13px; line-height:1.2; white-space:nowrap;}
+.counselor-cta-sub{font-family:var(--mono); font-size:9px; letter-spacing:.05em; text-transform:uppercase; opacity:.75;}
+@keyframes counselor-pulse{
+  0%,100%{box-shadow:0 8px 22px rgba(231,169,60,.4);}
+  50%{box-shadow:0 8px 22px rgba(231,169,60,.4), 0 0 0 7px rgba(231,169,60,.16);}
+}
+.hero-card{margin-top:56px;}
+@media (max-width:480px){
+  .counselor-cta{top:12px; left:12px; padding:7px 12px;}
+  .counselor-cta-main{font-size:11.5px;}
+  .counselor-cta-sub{font-size:8px;}
+  .hero-card{margin-top:64px;}
+}
+
+.hero-inner{position:relative; z-index:3; padding:120px 0 80px;}
+.hero-card{max-width:640px; padding:44px; }
+.hero-badge{
+  display:inline-flex; align-items:center; gap:8px; padding:7px 14px; border-radius:100px;
+  background:var(--gold-soft); border:1px solid rgba(231,169,60,.35); color:var(--gold);
+  font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:22px;
+}
+.hero-logo{display:flex; align-items:center; gap:14px; margin-bottom:18px;}
+.hero-logo .logo-mark{width:56px; height:56px;}
+.hero-logo .logo-stetho{width:32px; height:32px;}
+.hero-logo .logo-word{font-size:34px;}
+.hero-title-sub{
+  font-family:var(--mono); font-size:13.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-300); margin-bottom:26px;
+}
+.hero-title{font-size:clamp(32px,5.4vw,54px); line-height:1.08; margin-bottom:20px;}
+.hero-title em{font-style:italic; color:var(--teal); font-weight:600;}
+.hero-desc{color:var(--ink-300); font-size:16.5px; max-width:520px; margin-bottom:32px;}
+.hero-actions{display:flex; flex-wrap:wrap; gap:14px;}
+.hero-stats{display:flex; gap:32px; margin-top:44px; flex-wrap:wrap;}
+.hero-stat b{display:block; font-family:var(--mono); font-size:24px; color:var(--teal);}
+.hero-stat span{font-size:12.5px; color:var(--ink-500); letter-spacing:.03em;}
+
+@media (max-width:640px){
+  .hero{min-height:auto; padding-top:20px;}
+  .hero-card{padding:28px 22px;}
+}
+
+/* ---------- vitals divider (signature element) ---------- */
+.vitals{padding:0; margin:0 auto; max-width:1180px; overflow:hidden;}
+.vitals svg{display:block; width:100%; height:56px;}
+.vitals path{
+  fill:none; stroke:var(--teal); stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
+  stroke-dasharray:1400; stroke-dashoffset:1400; opacity:.7;
+  transition:stroke-dashoffset 1.8s cubic-bezier(.4,.1,.2,1);
+}
+.vitals.in-view path{stroke-dashoffset:0;}
+
+/* ---------- course accordion ---------- */
+.courses-grid{display:grid; gap:16px;}
+.course{border-radius:var(--radius);}
+.course-head{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:24px 26px; cursor:pointer; user-select:none;
+}
+.course-head-l{display:flex; align-items:center; gap:16px;}
+.course-num{font-family:var(--mono); color:var(--teal); font-size:13px; border:1px solid var(--line); border-radius:8px; padding:5px 9px;}
+.course-name{font-family:var(--disp); font-size:19px; font-weight:600; color:var(--ink-000);}
+.course-tag{font-size:12.5px; color:var(--ink-500); font-family:var(--mono);}
+.course-chevron{width:20px; height:20px; flex-shrink:0; transition:transform .3s ease; color:var(--teal);}
+.course.open .course-chevron{transform:rotate(180deg);}
+.course-body{max-height:0; overflow:hidden; transition:max-height .45s cubic-bezier(.4,.1,.2,1);}
+.course.open .course-body{max-height:70vh; overflow-y:auto; -webkit-overflow-scrolling:touch;}
+.course-body-inner{padding:0 26px 26px; border-top:1px solid var(--line); margin-top:2px;}
+.price-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin-top:18px;}
+.price-card{background:rgba(255,255,255,0.03); border:1px solid var(--line); border-radius:12px; padding:16px 18px; transition:transform .2s ease, border-color .2s ease;}
+.price-card:hover{transform:translateY(-2px); border-color:rgba(62,123,250,0.35);}
+.price-card .plan{font-size:13px; color:var(--ink-300); font-weight:600; margin-bottom:6px;}
+.price-card .amt{font-family:var(--mono); font-size:22px; color:var(--teal); font-weight:700;}
+.price-card .was{font-family:var(--mono); font-size:13px; color:var(--ink-500); text-decoration:line-through; margin-left:8px;}
+.price-note{font-size:12.5px; color:var(--ink-500); margin-top:14px; font-style:italic;}
+.sub-label{font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:.07em; color:var(--teal); margin:22px 0 4px;}
+.sub-label:first-child{margin-top:2px;}
+.combo-box{margin-top:16px; padding:18px 20px; border-radius:12px; background:var(--teal-soft); border:1px solid rgba(62,123,250,.32);}
+.combo-box .combo-title{font-family:var(--disp); font-size:15.5px; font-weight:600; color:var(--ink-000); margin-bottom:8px;}
+.combo-box .combo-price{font-family:var(--mono); font-weight:700; color:var(--teal); font-size:19px;}
+.combo-box .combo-price .was{font-size:13px;}
+.chip-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;}
+.chip{font-size:12px; padding:6px 11px; border-radius:100px; background:rgba(255,255,255,0.05); border:1px solid var(--line); color:var(--ink-300); font-family:var(--body);}
+.contact-note{padding:18px 20px; border-radius:12px; background:rgba(255,255,255,0.03); border:1px dashed var(--line); color:var(--ink-300); font-size:14px; margin-top:6px;}
+.urgency-banner{padding:12px 18px; border-radius:10px; background:var(--gold-soft); border:1px solid rgba(231,169,60,.35); color:var(--gold); font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.03em; margin-bottom:18px; text-align:center;}
+
+.quote-box{max-width:760px; margin:0 auto; padding:52px 44px; text-align:center; position:relative;}
+.quote-mark{font-family:var(--disp); font-size:64px; color:var(--teal); opacity:.4; line-height:1; margin-bottom:8px;}
+.quote-text{font-family:var(--disp); font-size:clamp(18px,2.6vw,24px); font-style:italic; color:var(--ink-000); min-height:90px; transition:opacity .6s ease; line-height:1.5;}
+.quote-text.fade{opacity:0;}
+.quote-dots{display:flex; justify-content:center; gap:6px; margin-top:24px; flex-wrap:wrap;}
+.quote-dot{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.18); transition:.3s;}
+.quote-dot.active{background:var(--teal); width:16px; border-radius:3px;}
+
+.faculty-grid{padding:10px; max-width:640px;}
+.faculty-row{display:flex; align-items:center; justify-content:space-between; padding:16px 22px; border-bottom:1px solid var(--line); gap:16px;}
+.faculty-row:last-of-type{border-bottom:none;}
+.faculty-name{font-family:var(--disp); font-weight:600; color:var(--ink-000); font-size:15.5px;}
+.faculty-subject{font-family:var(--mono); font-size:12.5px; color:var(--teal); border:1px solid rgba(62,123,250,.3); border-radius:100px; padding:5px 12px; white-space:nowrap;}
+
+/* ---------- coupon & cashback ---------- */
+.offer-band{
+  display:grid; grid-template-columns:1.1fr 1fr; gap:20px; align-items:stretch;
+}
+@media (max-width:800px){ .offer-band{grid-template-columns:1fr;} }
+.offer-card{padding:34px; display:flex; flex-direction:column; justify-content:center;}
+.coupon-row{
+  display:flex; align-items:center; gap:14px; margin:20px 0; flex-wrap:wrap;
+}
+.coupon-code{
+  font-family:var(--mono); font-size:24px; font-weight:700; letter-spacing:.1em; color:var(--gold);
+  border:1.5px dashed var(--gold); border-radius:12px; padding:12px 22px; background:var(--gold-soft);
+}
+.copy-btn{background:none; border:1px solid var(--line); color:var(--ink-300); border-radius:10px; padding:11px 16px; font-size:13px; font-weight:600; transition:.2s;}
+.copy-btn:hover{border-color:var(--teal); color:var(--teal);}
+.copy-btn.copied{border-color:var(--teal); color:var(--teal); background:var(--teal-soft);}
+
+/* ---------- why choose ---------- */
+.features-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+@media (max-width:900px){ .features-grid{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:560px){ .features-grid{grid-template-columns:1fr;} }
+.feature{padding:28px; transition:transform .25s ease, border-color .25s ease;}
+.feature:hover{transform:translateY(-4px); border-color:rgba(62,123,250,0.4);}
+.feature-icon{width:42px; height:42px; color:var(--teal); margin-bottom:16px;}
+.feature h4{font-size:17px; color:var(--ink-000); margin-bottom:8px;}
+.feature p{color:var(--ink-300); font-size:14.5px; margin:0;}
+
+/* ---------- comparison table ---------- */
+.table-wrap{overflow-x:auto; border-radius:var(--radius); border:1px solid var(--glass-brd);}
+table{width:100%; border-collapse:collapse; min-width:680px; background:var(--glass); backdrop-filter:blur(18px);}
+th,td{padding:16px 20px; text-align:left; border-bottom:1px solid var(--line); font-size:14.5px;}
+thead th{font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-500); font-weight:600;}
+tbody tr:last-child td{border-bottom:none;}
+td.feat-name{color:var(--ink-000); font-weight:600;}
+th.highlight, td.highlight{background:var(--teal-soft); position:relative;}
+th.highlight{color:var(--teal) !important;}
+.tick{color:var(--teal); font-weight:700;}
+.cross{color:var(--ink-500);}
+
+/* ---------- FAQ ---------- */
+.faq-list{display:flex; flex-direction:column; gap:12px; max-width:820px;}
+.faq-item{border-radius:14px;}
+.faq-q{display:flex; justify-content:space-between; align-items:center; gap:16px; padding:20px 24px; cursor:pointer;}
+.faq-q h4{font-size:15.5px; font-weight:600; color:var(--ink-000); font-family:var(--body);}
+.faq-plus{width:18px; height:18px; flex-shrink:0; position:relative; color:var(--teal);}
+.faq-plus::before,.faq-plus::after{content:''; position:absolute; background:currentColor; border-radius:2px; transition:.3s;}
+.faq-plus::before{width:100%; height:2px; top:50%; left:0; transform:translateY(-50%);}
+.faq-plus::after{height:100%; width:2px; left:50%; top:0; transform:translateX(-50%);}
+.faq-item.open .faq-plus::after{transform:translateX(-50%) rotate(90deg); opacity:0;}
+.faq-a{max-height:0; overflow:hidden; transition:max-height .4s ease;}
+.faq-item.open .faq-a{max-height:260px;}
+.faq-a p{padding:0 24px 20px; color:var(--ink-300); font-size:14.5px; margin:0;}
+
+/* ---------- testimonials ---------- */
+.testi-track{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+@media (max-width:900px){ .testi-track{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:640px){ .testi-track{grid-template-columns:1fr;} }
+.testi{padding:26px;}
+.stars{color:var(--gold); letter-spacing:2px; margin-bottom:12px; font-size:14px;}
+.testi p{color:var(--ink-300); font-size:14.5px; font-style:italic; margin:0 0 18px;}
+.testi-who{display:flex; align-items:center; gap:12px;}
+.testi-avatar{width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,var(--teal),var(--navy-700)); display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-weight:700; font-size:13px; color:var(--navy-950);}
+.testi-who b{font-size:13.5px; color:var(--ink-000); display:block;}
+.testi-who span{font-size:12px; color:var(--ink-500);}
+
+/* ---------- contact ---------- */
+.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+@media (max-width:800px){ .contact-grid{grid-template-columns:1fr;} }
+.contact-card{padding:36px;}
+.contact-item{display:flex; align-items:flex-start; gap:14px; padding:16px 0; border-bottom:1px solid var(--line);}
+.contact-item:last-child{border-bottom:none;}
+.contact-item .ic{width:20px; height:20px; color:var(--teal); flex-shrink:0; margin-top:2px;}
+.contact-item b{display:block; font-size:14px; color:var(--ink-000);}
+.contact-item span{font-size:13.5px; color:var(--ink-500);}
+
+/* ---------- footer ---------- */
+footer{background:var(--navy-900); border-top:1px solid var(--line); padding:56px 0 28px;}
+.foot-top{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:36px; margin-bottom:40px;}
+@media (max-width:800px){ .foot-top{grid-template-columns:1fr 1fr; row-gap:32px;} }
+@media (max-width:480px){ .foot-top{grid-template-columns:1fr;} }
+.foot-col h5{font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-500); font-family:var(--mono); margin-bottom:16px;}
+.foot-col a{display:block; font-size:14px; color:var(--ink-300); margin-bottom:10px; transition:.2s;}
+.foot-col a:hover{color:var(--teal);}
+.foot-desc{color:var(--ink-500); font-size:13.5px; max-width:300px; margin-top:14px;}
+.foot-bottom{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; padding-top:24px; border-top:1px solid var(--line); font-size:12.5px; color:var(--ink-500);}
+.foot-disclaimer{font-size:11.5px; color:var(--ink-500); opacity:.75; max-width:820px; margin-top:18px; line-height:1.6;}
+
+/* ---------- floating whatsapp ---------- */
+.fab{
+  position:fixed; bottom:24px; right:24px; z-index:70;
+  width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg,#2fbf72,#1f8f57);
+  display:flex; align-items:center; justify-content:center; box-shadow:0 12px 30px rgba(31,143,87,0.45);
+  animation:fab-pulse 2.6s ease-in-out infinite;
+}
+.fab svg{width:28px; height:28px; color:#eafff2;}
+@keyframes fab-pulse{
+  0%,100%{box-shadow:0 12px 30px rgba(31,143,87,0.45);}
+  50%{box-shadow:0 12px 30px rgba(31,143,87,0.45), 0 0 0 10px rgba(47,191,114,0.12);}
+}
+
+/* ---------- reveal-on-scroll ---------- */
+.reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+.reveal.in-view{opacity:1; transform:translateY(0);}
+
+.grid2{display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
+@media (max-width:560px){ .grid2{grid-template-columns:1fr;} }
+
+/* ---------- small-phone refinements ---------- */
+@media (max-width:480px){
+  .wrap{padding:0 16px;}
+  .btn{white-space:normal; text-align:center; padding:13px 20px; font-size:14px;}
+  .hero-actions{flex-direction:column; align-items:stretch;}
+  .hero-actions .btn{width:100%;}
+  .hero-badge{font-size:11px;}
+  .hero-logo .logo-word{font-size:26px;}
+  .coupon-code{font-size:19px; padding:10px 16px; letter-spacing:.05em;}
+  .coupon-row{flex-direction:column; align-items:stretch;}
+  .copy-btn{width:100%;}
+  .offer-card{padding:24px 20px;}
+  .quote-box{padding:32px 20px;}
+  .quote-mark{font-size:44px;}
+  .faculty-row{flex-wrap:wrap; gap:8px; padding:14px 16px;}
+  .course-head{padding:18px 16px;}
+  .course-body-inner{padding:0 16px 20px;}
+  .course-name{font-size:16.5px;}
+  .price-grid{grid-template-columns:1fr 1fr;}
+  .contact-card{padding:24px 20px;}
+  .nav-cta .btn{padding:9px 14px; font-size:12.5px;}
+}
+@media (max-width:360px){
+  .price-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================== MARQUEE ============================== -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span>✨ Current Offers: 📚 30% OFF on Version XI Notes &nbsp;|&nbsp; 📝 25% OFF on RR Notes &nbsp;|&nbsp; ⏳ Limited Time Offer, Hurry Up! &nbsp;|&nbsp; Need more information? Contact us on WhatsApp.</span>
+    <span>✨ Current Offers: 📚 30% OFF on Version XI Notes &nbsp;|&nbsp; 📝 25% OFF on RR Notes &nbsp;|&nbsp; ⏳ Limited Time Offer, Hurry Up! &nbsp;|&nbsp; Need more information? Contact us on WhatsApp.</span>
+  </div>
+</div>
+
+<!-- ============================== HEADER ================================ -->
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="logo" aria-label="PrepSaver home">
+      <svg class="logo-stetho" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="6" cy="3.2" r="1.1" fill="currentColor"/>
+        <circle cx="14" cy="3.2" r="1.1" fill="currentColor"/>
+        <path d="M6 4.2v3a3 3 0 003 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M14 4.2v3a3 3 0 01-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M9 10.2v2.6a4 4 0 008 0v-1.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="19" cy="9.4" r="1.5" stroke="currentColor" stroke-width="1.3"/>
+        <circle cx="13" cy="18.6" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+      <svg class="logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="24" cy="24" r="22" stroke="#3E7BFA" stroke-width="1.5" opacity="0.35"/>
+        <path d="M6 24H15L18.5 15L24 33L28 20L31 24H42" stroke="#3E7BFA" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo-word">Prep<em>Saver</em></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#courses">Courses</a>
+      <a href="#why">Why Us</a>
+      <a href="#compare">Compare</a>
+      <a href="#faq">FAQ</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="https://forms.gle/V2mkSMtBYRtAfPXq5" target="_blank" rel="noopener" class="btn btn-ghost">Free Consultation</a>
+      <a href="https://wa.me/917298903458" target="_blank" rel="noopener" class="btn btn-whatsapp">WhatsApp</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================== HERO =================================== -->
+<section class="hero" id="top">
+  <div class="hero-slides" id="heroSlides">
+    <!-- 8 slides — doctor1.jpg through doctor8.jpg, with a themed gradient fallback
+         so the hero still looks premium even before the images are uploaded. -->
+    <div class="hero-slide active" style="background-image:url('images/doctor1.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/doctor2.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/doctor3.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/doctor4.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/doctor5.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/doctor6.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/doctor7.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/doctor8.jpg')"></div>
+  </div>
+  <div class="hero-scrim"></div>
+  <div class="hero-dots" id="heroDots"></div>
+
+  <a href="https://forms.gle/V2mkSMtBYRtAfPXq5" target="_blank" rel="noopener" class="counselor-cta">
+    <span class="counselor-cta-main">🎧 Talk to our Counselor</span>
+    <span class="counselor-cta-sub">Free · Instant Reply</span>
+  </a>
+
+  <div class="wrap hero-inner">
+    <div class="hero-card glass">
+      <div class="hero-badge">🏅 Trusted Medical Education Consultant</div>
+      <div class="hero-logo">
+        <svg class="logo-stetho" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="6" cy="3.2" r="1.1" fill="currentColor"/>
+          <circle cx="14" cy="3.2" r="1.1" fill="currentColor"/>
+          <path d="M6 4.2v3a3 3 0 003 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M14 4.2v3a3 3 0 01-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M9 10.2v2.6a4 4 0 008 0v-1.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="19" cy="9.4" r="1.5" stroke="currentColor" stroke-width="1.3"/>
+          <circle cx="13" cy="18.6" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        <svg class="logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="24" cy="24" r="22" stroke="#3E7BFA" stroke-width="1.5" opacity="0.35"/>
+          <path d="M6 24H15L18.5 15L24 33L28 20L31 24H42" stroke="#3E7BFA" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="logo-word">Prep<em>Saver</em></span>
+      </div>
+      <div class="hero-title-sub">Medical Education Consultant</div>
+      <h1 class="hero-title">Your Partner in <em>Smarter</em> Medical 🩺<br>Preparation</h1>
+      <p class="hero-desc">Personalised guidance, verified discounts and cashback on India's leading medical prep platforms — so you spend on studying, not on guesswork.</p>
+      <div class="hero-actions">
+        <a href="https://forms.gle/V2mkSMtBYRtAfPXq5" target="_blank" rel="noopener" class="btn btn-primary">Get Free Medical Consultation</a>
+        <a href="https://wa.me/917298903458" target="_blank" rel="noopener" class="btn btn-whatsapp">WhatsApp Now</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><b>7</b><span>Course Tracks</span></div>
+        <div class="hero-stat"><b>₹2.5K</b><span>Max Instant Discount</span></div>
+        <div class="hero-stat"><b>24×7</b><span>WhatsApp Support</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== MOTIVATION QUOTES ======================= -->
+<section id="motivation" style="padding:48px 0;">
+  <div class="wrap">
+    <div class="head-row" style="margin-bottom:28px;">
+      <span class="eyebrow">Keep Going</span>
+      <h2 class="section-title">A word for the <em>hard days</em></h2>
+      <p class="section-sub">Twenty reminders for every MBBS grad chasing the next exam.</p>
+    </div>
+    <div class="quote-box glass">
+      <div class="quote-mark">"</div>
+      <p class="quote-text" id="quoteText">Every chapter you finish tonight is a patient you'll treat better tomorrow.</p>
+      <div class="quote-dots" id="quoteDots"></div>
+    </div>
+  </div>
+</section>
+
+<div class="vitals" aria-hidden="true">
+  <svg viewBox="0 0 1180 56" preserveAspectRatio="none"><path d="M0 28 L260 28 L290 8 L316 48 L344 28 L980 28 L1010 8 L1036 48 L1064 28 L1180 28"/></svg>
+</div>
+
+<!-- ============================== TOP OFFER BAR ============================ -->
+<div class="top-offer-bar">
+  <div class="wrap top-offer-inner">
+    <div class="top-offer-card">
+      <span class="top-offer-label">🎟️ PrepLadder Coupon Code</span>
+      <div class="top-offer-row">
+        <span class="coupon-code" id="couponCode">RABZ11</span>
+        <button class="copy-btn" id="copyBtn">Copy</button>
+        <span class="top-offer-sub">₹2,000–₹2,500 instant discount</span>
+      </div>
+      <!-- TODO: swap this href for the direct PrepLadder app/checkout link once provided -->
+      <a href="https://prepladder.com/app/org-packages-458--RABZ11" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Claim This Offer</a>
+    </div>
+    <div class="top-offer-card">
+      <span class="top-offer-label">💰 Extra Cashback</span>
+      <p class="top-offer-sub" style="margin:6px 0 12px;">Up to ₹2,500 cashback, depending on your course price.</p>
+      <a href="https://wa.me/917298903458?text=Cashback" target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm">Check My Cashback</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== COURSES ================================ -->
+<section id="courses">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <span class="eyebrow">Course Catalogue</span>
+      <h2 class="section-title">Pick your track, see <em>real pricing</em> instantly</h2>
+      <p class="section-sub">Tap any category to expand pricing. Every plan ships with the PrepSaver coupon applied where eligible.</p>
+    </div>
+
+    <div class="courses-grid" id="coursesGrid">
+      <!-- Course 1 : NEET PG / INI CET -->
+      <div class="course glass reveal">
+        <div class="course-head" data-target="c1">
+          <div class="course-head-l">
+            <span class="course-num">01</span>
+            <div>
+              <div class="course-name">NEET PG / INI CET</div>
+              <div class="course-tag">Video lectures · QBank · Test series · Live batches</div>
+            </div>
+          </div>
+          <svg class="course-chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="course-body" id="c1">
+          <div class="course-body-inner">
+            <div class="sub-label">Elite Plan</div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">Target NEET PG '26</div><div class="amt">₹6,500<span class="was">₹35,000</span></div></div>
+              <div class="price-card"><div class="plan">6 Months</div><div class="amt">₹19,999<span class="was">₹45,000</span></div></div>
+              <div class="price-card"><div class="plan">12 Months</div><div class="amt">₹27,999<span class="was">₹55,000</span></div></div>
+              <div class="price-card"><div class="plan">18 Months</div><div class="amt">₹32,999<span class="was">₹67,500</span></div></div>
+              <div class="price-card"><div class="plan">24 Months</div><div class="amt">₹36,999<span class="was">₹77,500</span></div></div>
+              <div class="price-card"><div class="plan">36 Months</div><div class="amt">₹49,999<span class="was">₹92,500</span></div></div>
+              <div class="price-card"><div class="plan">48 Months</div><div class="amt">₹55,199<span class="was">₹105,000</span></div></div>
+              <div class="price-card"><div class="plan">60 Months</div><div class="amt">₹60,029<span class="was">₹116,500</span></div></div>
+              <div class="price-card"><div class="plan">72 Months</div><div class="amt">₹63,479<span class="was">₹126,500</span></div></div>
+            </div>
+
+            <div class="sub-label">Live Batch Programs (NEET PG · FMGE · INI-CET)</div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">Super Elite — 6 Mo</div><div class="amt">₹30,999<span class="was">₹32,999</span></div></div>
+              <div class="price-card"><div class="plan">Super Elite — 12 Mo</div><div class="amt">₹38,199<span class="was">₹40,999</span></div></div>
+              <div class="price-card"><div class="plan">Super Elite — 24 Mo</div><div class="amt">₹46,299<span class="was">₹49,999</span></div></div>
+              <div class="price-card"><div class="plan">Super Elite — 36 Mo</div><div class="amt">₹57,999<span class="was">₹62,999</span></div></div>
+              <div class="price-card"><div class="plan">Resolve 2.0 (180-Day Live)</div><div class="amt">₹13,000<span class="was">₹21,000</span></div></div>
+            </div>
+            <div class="chip-row">
+              <span class="chip">180 days live classes</span>
+              <span class="chip">19-subject coverage</span>
+              <span class="chip">All-India test series</span>
+            </div>
+
+            <div class="combo-box">
+              <div class="combo-title">🎯 PrepSaver Combo — Elite + Extension</div>
+              <div class="combo-price">₹6,500 <span class="was">₹35,000</span> + ₹5,200 <span class="was">₹32,000</span></div>
+              <div class="chip-row">
+                <span class="chip">18,500 NEET PG-aligned MCQs</span>
+                <span class="chip">Real cadaver dissection videos</span>
+                <span class="chip">280 hrs rapid revision lectures</span>
+                <span class="chip">Smart digital flashcards</span>
+              </div>
+              <div class="price-note">Limited-time pricing · only 500 slots left · offer window subject to change.</div>
+            </div>
+            <div class="price-note">*This is the original website price. Apply code <strong style="color:var(--gold);">RABZ11</strong> for a further ₹2,000–₹2,500 instant discount. You can also get cashback of up to ₹2,500 depending on the course amount — <a href="https://wa.me/917298903458?text=Cashback" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:underline;">contact us on WhatsApp for cashback</a>.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Course 2 : FMGE -->
+      <div class="course glass reveal">
+        <div class="course-head" data-target="c2">
+          <div class="course-head-l">
+            <span class="course-num">02</span>
+            <div>
+              <div class="course-name">FMGE</div>
+              <div class="course-tag">Foreign Medical Graduate Exam prep</div>
+            </div>
+          </div>
+          <svg class="course-chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="course-body" id="c2">
+          <div class="course-body-inner">
+            <div class="sub-label">Elite Plan</div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">6 Months</div><div class="amt">₹19,999<span class="was">₹45,000</span></div></div>
+              <div class="price-card"><div class="plan">12 Months</div><div class="amt">₹27,999<span class="was">₹55,000</span></div></div>
+              <div class="price-card"><div class="plan">18 Months</div><div class="amt">₹32,999<span class="was">₹67,500</span></div></div>
+              <div class="price-card"><div class="plan">24 Months</div><div class="amt">₹36,999<span class="was">₹77,500</span></div></div>
+              <div class="price-card"><div class="plan">36 Months</div><div class="amt">₹49,999<span class="was">₹92,500</span></div></div>
+              <div class="price-card"><div class="plan">48 Months</div><div class="amt">₹55,199<span class="was">₹105,000</span></div></div>
+              <div class="price-card"><div class="plan">60 Months</div><div class="amt">₹60,029<span class="was">₹116,500</span></div></div>
+              <div class="price-card"><div class="plan">72 Months</div><div class="amt">₹63,479<span class="was">₹126,500</span></div></div>
+            </div>
+            <div class="price-note">*This is the original website price. Apply code <strong style="color:var(--gold);">RABZ11</strong> for a further ₹2,000–₹2,500 instant discount. You can also get cashback of up to ₹2,500 depending on the course amount — <a href="https://wa.me/917298903458?text=Cashback" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:underline;">contact us on WhatsApp for cashback</a>.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Course 3 : NEET SS Courses -->
+      <div class="course glass reveal">
+        <div class="course-head" data-target="c3">
+          <div class="course-head-l">
+            <span class="course-num">03</span>
+            <div>
+              <div class="course-name">NEET SS Courses</div>
+              <div class="course-tag">Super-specialty entrance prep</div>
+            </div>
+          </div>
+          <svg class="course-chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="course-body" id="c3">
+          <div class="course-body-inner">
+
+            <div class="sub-label">NEET SS Surgery — Elite Plan (Based on Sabiston's 21st Ed)</div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">6 Months</div><div class="amt">₹26,499<span class="was">₹48,000</span></div></div>
+              <div class="price-card"><div class="plan">12 Months</div><div class="amt">₹33,999<span class="was">₹58,000</span></div></div>
+              <div class="price-card"><div class="plan">18 Months</div><div class="amt">₹47,499<span class="was">₹70,000</span></div></div>
+              <div class="price-card"><div class="plan">24 Months</div><div class="amt">₹54,499<span class="was">₹76,000</span></div></div>
+              <div class="price-card"><div class="plan">36 Months</div><div class="amt">₹66,499<span class="was">₹84,000</span></div></div>
+            </div>
+            <div class="chip-row"><span class="chip">Video lectures + QBank + Test series</span><span class="chip">Hard-copy notes on 6mo+ plans</span></div>
+
+            <div class="sub-label">NEET SS Surgery — Extension Plan</div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">6 Months</div><div class="amt">₹18,549<span class="was">₹34,500</span></div></div>
+              <div class="price-card"><div class="plan">9 Months</div><div class="amt">₹21,099<span class="was">₹38,500</span></div></div>
+              <div class="price-card"><div class="plan">12 Months</div><div class="amt">₹23,999<span class="was">₹41,500</span></div></div>
+            </div>
+
+            <div class="sub-label">NEET SS Medicine — Elite Plan (Based on Harrison's 21st Ed)</div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">6 Months</div><div class="amt">₹31,499<span class="was">₹48,000</span></div></div>
+              <div class="price-card"><div class="plan">12 Months</div><div class="amt">₹39,499<span class="was">₹58,000</span></div></div>
+              <div class="price-card"><div class="plan">18 Months</div><div class="amt">₹52,999<span class="was">₹70,000</span></div></div>
+              <div class="price-card"><div class="plan">24 Months</div><div class="amt">₹60,499<span class="was">₹76,000</span></div></div>
+              <div class="price-card"><div class="plan">36 Months</div><div class="amt">₹71,999<span class="was">₹84,000</span></div></div>
+            </div>
+            <div class="chip-row"><span class="chip">Video lectures + QBank + Test series</span><span class="chip">Hard-copy notes on 6mo+ plans</span></div>
+
+            <div class="sub-label">NEET SS Medicine — Extension Plan</div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">6 Months</div><div class="amt">₹22,049<span class="was">₹34,500</span></div></div>
+              <div class="price-card"><div class="plan">9 Months</div><div class="amt">₹24,599<span class="was">₹36,500</span></div></div>
+              <div class="price-card"><div class="plan">12 Months</div><div class="amt">₹27,999<span class="was">₹38,500</span></div></div>
+            </div>
+
+            <div class="sub-label">NEET SS Medicine — Pro Plan</div>
+            <div class="chip-row"><span class="chip">QBank</span><span class="chip">Test Series</span><span class="chip">Treasures</span></div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">6 Months</div><div class="amt">₹6,999<span class="was">₹16,000</span></div></div>
+              <div class="price-card"><div class="plan">9 Months</div><div class="amt">₹8,499<span class="was">₹20,000</span></div></div>
+              <div class="price-card"><div class="plan">12 Months</div><div class="amt">₹8,999<span class="was">₹24,000</span></div></div>
+              <div class="price-card"><div class="plan">18 Months</div><div class="amt">₹11,999<span class="was">₹26,000</span></div></div>
+              <div class="price-card"><div class="plan">24 Months</div><div class="amt">₹13,999<span class="was">₹28,000</span></div></div>
+              <div class="price-card"><div class="plan">36 Months</div><div class="amt">₹15,999<span class="was">₹32,000</span></div></div>
+            </div>
+
+            <div class="sub-label">NEET SS Pediatrics — Elite Plan (Based on Nelson's 22nd Ed)</div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">6 Months</div><div class="amt">₹32,499<span class="was">₹56,000</span></div></div>
+              <div class="price-card"><div class="plan">12 Months</div><div class="amt">₹43,499<span class="was">₹69,000</span></div></div>
+              <div class="price-card"><div class="plan">18 Months</div><div class="amt">₹57,999<span class="was">₹82,000</span></div></div>
+              <div class="price-card"><div class="plan">24 Months</div><div class="amt">₹65,999<span class="was">₹90,000</span></div></div>
+              <div class="price-card"><div class="plan">36 Months</div><div class="amt">₹79,499<span class="was">₹98,000</span></div></div>
+            </div>
+            <div class="chip-row"><span class="chip">Video lectures + QBank + Test series</span><span class="chip">Hard-copy notes on 6mo+ plans</span></div>
+
+            <div class="sub-label">NEET SS Pediatrics — Extension Plan</div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">6 Months</div><div class="amt">₹22,999<span class="was">₹40,500</span></div></div>
+              <div class="price-card"><div class="plan">9 Months</div><div class="amt">₹26,599<span class="was">₹43,500</span></div></div>
+              <div class="price-card"><div class="plan">12 Months</div><div class="amt">₹30,449<span class="was">₹52,500</span></div></div>
+            </div>
+
+            <div class="sub-label">NEET SS Pediatrics — Pro Plan</div>
+            <div class="chip-row"><span class="chip">QBank</span><span class="chip">Test Series</span><span class="chip">Treasures</span><span class="chip">5000+ clinical MCQs</span><span class="chip">600+ annotated images</span></div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">6 Months</div><div class="amt">₹7,499<span class="was">₹18,000</span></div></div>
+              <div class="price-card"><div class="plan">9 Months</div><div class="amt">₹9,099<span class="was">₹21,000</span></div></div>
+              <div class="price-card"><div class="plan">12 Months</div><div class="amt">₹9,999<span class="was">₹24,000</span></div></div>
+              <div class="price-card"><div class="plan">18 Months</div><div class="amt">₹13,099<span class="was">₹28,000</span></div></div>
+              <div class="price-card"><div class="plan">24 Months</div><div class="amt">₹15,199<span class="was">₹30,000</span></div></div>
+              <div class="price-card"><div class="plan">36 Months</div><div class="amt">₹17,999<span class="was">₹33,000</span></div></div>
+            </div>
+
+            <div class="price-note">*This is the original website price. Apply code <strong style="color:var(--gold);">RABZ11</strong> for a further ₹2,000–₹2,500 instant discount. You can also get cashback of up to ₹2,500 depending on the course amount — <a href="https://wa.me/917298903458?text=Cashback" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:underline;">contact us on WhatsApp for cashback</a>.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Course 3b : Residency Courses -->
+      <div class="course glass reveal">
+        <div class="course-head" data-target="c3b">
+          <div class="course-head-l">
+            <span class="course-num">04</span>
+            <div>
+              <div class="course-name">Residency Courses</div>
+              <div class="course-tag">Junior &amp; Senior Residency prep</div>
+            </div>
+          </div>
+          <svg class="course-chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="course-body" id="c3b">
+          <div class="course-body-inner">
+
+            <div class="sub-label">Residency — OBS-GYN (Dr. Shonali Chandra)</div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">6 Months</div><div class="amt">₹25,999<span class="was">₹38,000</span></div></div>
+              <div class="price-card"><div class="plan">12 Months</div><div class="amt">₹32,999<span class="was">₹52,000</span></div></div>
+              <div class="price-card"><div class="plan">18 Months</div><div class="amt">₹43,399<span class="was">₹65,500</span></div></div>
+              <div class="price-card"><div class="plan">24 Months</div><div class="amt">₹44,999<span class="was">₹69,000</span></div></div>
+              <div class="price-card"><div class="plan">36 Months</div><div class="amt">₹56,499<span class="was">₹77,500</span></div></div>
+            </div>
+
+            <div class="sub-label">Residency — ENT (Dr. Vyshnavi Bommakanti)</div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">6 Months</div><div class="amt">₹30,999<span class="was">₹44,000</span></div></div>
+              <div class="price-card"><div class="plan">12 Months</div><div class="amt">₹39,999<span class="was">₹56,500</span></div></div>
+              <div class="price-card"><div class="plan">18 Months</div><div class="amt">₹47,399<span class="was">₹66,500</span></div></div>
+              <div class="price-card"><div class="plan">24 Months</div><div class="amt">₹48,999<span class="was">₹69,500</span></div></div>
+              <div class="price-card"><div class="plan">36 Months</div><div class="amt">₹61,999<span class="was">₹80,500</span></div></div>
+            </div>
+            <div class="chip-row"><span class="chip">Hard-copy notes included</span></div>
+
+            <div class="sub-label">Residency — Radiology (Dr. Abhishek Jha)</div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">6 Months</div><div class="amt">₹19,999<span class="was">₹32,500</span></div></div>
+              <div class="price-card"><div class="plan">12 Months</div><div class="amt">₹27,999<span class="was">₹51,000</span></div></div>
+              <div class="price-card"><div class="plan">18 Months</div><div class="amt">₹33,399<span class="was">₹60,000</span></div></div>
+              <div class="price-card"><div class="plan">24 Months</div><div class="amt">₹35,599<span class="was">₹63,000</span></div></div>
+              <div class="price-card"><div class="plan">36 Months</div><div class="amt">₹47,499<span class="was">₹75,500</span></div></div>
+            </div>
+
+            <div class="sub-label">Residency — Psychiatry (Dr. Ankit Goel)</div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">6 Months</div><div class="amt">₹30,499<span class="was">₹43,500</span></div></div>
+              <div class="price-card"><div class="plan">12 Months</div><div class="amt">₹38,499<span class="was">₹54,500</span></div></div>
+              <div class="price-card"><div class="plan">18 Months</div><div class="amt">₹43,649<span class="was">₹61,000</span></div></div>
+              <div class="price-card"><div class="plan">24 Months</div><div class="amt">₹47,599<span class="was">₹67,000</span></div></div>
+              <div class="price-card"><div class="plan">36 Months</div><div class="amt">₹58,999<span class="was">₹76,500</span></div></div>
+            </div>
+            <div class="chip-row"><span class="chip">Hard-copy notes included</span></div>
+
+            <div class="price-note">*This is the original website price. Apply code <strong style="color:var(--gold);">RABZ11</strong> for a further ₹2,000–₹2,500 instant discount. You can also get cashback of up to ₹2,500 depending on the course amount — <a href="https://wa.me/917298903458?text=Cashback" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:underline;">contact us on WhatsApp for cashback</a>.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Course 4 : Extension Plans -->
+      <div class="course glass reveal">
+        <div class="course-head" data-target="c4">
+          <div class="course-head-l">
+            <span class="course-num">05</span>
+            <div>
+              <div class="course-name">Extension Plans</div>
+              <div class="course-tag">Extend validity on an existing Elite plan</div>
+            </div>
+          </div>
+          <svg class="course-chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="course-body" id="c4">
+          <div class="course-body-inner">
+            <div class="sub-label">NEET PG Extension</div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">Target NEET PG '26</div><div class="amt">₹5,200<span class="was">₹32,000</span></div></div>
+              <div class="price-card"><div class="plan">6 Months</div><div class="amt">₹15,999<span class="was">₹38,000</span></div></div>
+              <div class="price-card"><div class="plan">12 Months</div><div class="amt">₹22,399<span class="was">₹46,500</span></div></div>
+              <div class="price-card"><div class="plan">18 Months</div><div class="amt">₹26,399<span class="was">₹55,000</span></div></div>
+              <div class="price-card"><div class="plan">24 Months</div><div class="amt">₹29,599<span class="was">₹62,000</span></div></div>
+              <div class="price-card"><div class="plan">36 Months</div><div class="amt">₹39,999<span class="was">₹74,000</span></div></div>
+            </div>
+            <div class="sub-label">FMGE Extension</div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">6 Months</div><div class="amt">₹15,999<span class="was">₹40,000</span></div></div>
+              <div class="price-card"><div class="plan">12 Months</div><div class="amt">₹22,399<span class="was">₹46,500</span></div></div>
+              <div class="price-card"><div class="plan">18 Months</div><div class="amt">₹26,399<span class="was">₹57,000</span></div></div>
+              <div class="price-card"><div class="plan">24 Months</div><div class="amt">₹29,599<span class="was">₹62,000</span></div></div>
+              <div class="price-card"><div class="plan">36 Months</div><div class="amt">₹39,999<span class="was">₹72,000</span></div></div>
+            </div>
+            <div class="price-note">*This is the original website price. Apply code <strong style="color:var(--gold);">RABZ11</strong> for a further ₹2,000–₹2,500 instant discount. You can also get cashback of up to ₹2,500 depending on the course amount — <a href="https://wa.me/917298903458?text=Cashback" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:underline;">contact us on WhatsApp for cashback</a>.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Course 6 : PRO QBANK Plans -->
+      <div class="course glass reveal">
+        <div class="course-head" data-target="c6">
+          <div class="course-head-l">
+            <span class="course-num">06</span>
+            <div>
+              <div class="course-name">PRO QBANK Plans</div>
+              <div class="course-tag">Clinical question bank · Test series · PYQs · Treasures</div>
+            </div>
+          </div>
+          <svg class="course-chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="course-body" id="c6">
+          <div class="course-body-inner">
+            <div class="chip-row">
+              <span class="chip">QBank</span>
+              <span class="chip">Test Series</span>
+              <span class="chip">PYQs</span>
+              <span class="chip">Treasures</span>
+            </div>
+            <div class="sub-label">NEET PG — Pro Plan</div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">Target NEET PG '26</div><div class="amt">₹3,999<span class="was">₹30,000</span></div></div>
+              <div class="price-card"><div class="plan">9 Months</div><div class="amt">₹11,899<span class="was">₹21,000</span></div></div>
+              <div class="price-card"><div class="plan">12 Months</div><div class="amt">₹12,599<span class="was">₹24,000</span></div></div>
+              <div class="price-card"><div class="plan">18 Months</div><div class="amt">₹14,999<span class="was">₹30,000</span></div></div>
+              <div class="price-card"><div class="plan">24 Months</div><div class="amt">₹17,399<span class="was">₹34,000</span></div></div>
+            </div>
+            <div class="sub-label">FMGE — Pro Plan</div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">Target FMGE '27</div><div class="amt">₹9,999<span class="was">₹20,000</span></div></div>
+              <div class="price-card"><div class="plan">9 Months</div><div class="amt">₹12,419<span class="was">₹21,000</span></div></div>
+              <div class="price-card"><div class="plan">12 Months</div><div class="amt">₹12,599<span class="was">₹24,000</span></div></div>
+              <div class="price-card"><div class="plan">18 Months</div><div class="amt">₹14,999<span class="was">₹30,000</span></div></div>
+              <div class="price-card"><div class="plan">24 Months</div><div class="amt">₹17,399<span class="was">₹34,000</span></div></div>
+            </div>
+            <div class="price-note">*This is the original website price. Apply code <strong style="color:var(--gold);">RABZ11</strong> for a further ₹2,000–₹2,500 instant discount. You can also get cashback of up to ₹2,500 depending on the course amount — <a href="https://wa.me/917298903458?text=Cashback" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:underline;">contact us on WhatsApp for cashback</a>.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Course 7 : Version XI Notes and Rapid Revision Notes -->
+      <div class="course glass reveal">
+        <div class="course-head" data-target="c7">
+          <div class="course-head-l">
+            <span class="course-num">07</span>
+            <div>
+              <div class="course-name">Version XI Notes and Rapid Revision Notes</div>
+              <div class="course-tag">Latest edition printed &amp; digital revision notes</div>
+            </div>
+          </div>
+          <svg class="course-chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="course-body" id="c7">
+          <div class="course-body-inner">
+            <div class="urgency-banner">⏳ Limited Time Offer — Hurry Up!</div>
+            <div class="sub-label">Rapid Revision Notes (Digital-first Set)</div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">Rapid Revision Set</div><div class="amt">₹5,249<span class="was">₹6,999</span></div></div>
+            </div>
+            <div class="chip-row">
+              <span class="chip">Aligned with video lectures</span>
+              <span class="chip">Flowcharts &amp; mindmaps</span>
+              <span class="chip">PYQ-tagged topics</span>
+              <span class="chip">Mnemonics included</span>
+            </div>
+
+            <div class="sub-label">Hard Copy Notes + Summary Charts</div>
+            <div class="price-grid">
+              <div class="price-card"><div class="plan">Full Printed Set</div><div class="amt">₹8,166<span class="was">₹11,665</span></div></div>
+            </div>
+            <div class="chip-row">
+              <span class="chip">2000+ summary charts</span>
+              <span class="chip">Triple-verified accuracy</span>
+              <span class="chip">Workbook-style format</span>
+            </div>
+            <div class="price-note">*This is the original website price. Apply code <strong style="color:var(--gold);">RABZ11</strong> for a further ₹2,000–₹2,500 instant discount. You can also get cashback of up to ₹2,500 depending on the course amount — <a href="https://wa.me/917298903458?text=Cashback" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:underline;">contact us on WhatsApp for cashback</a>.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="vitals" aria-hidden="true">
+  <svg viewBox="0 0 1180 56" preserveAspectRatio="none"><path d="M0 28 L260 28 L290 8 L316 48 L344 28 L980 28 L1010 8 L1036 48 L1064 28 L1180 28"/></svg>
+</div>
+
+<!-- ============================== COUPON / CASHBACK ====================== -->
+<!-- ============================== WHY CHOOSE ============================= -->
+<section id="why">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <span class="eyebrow">Why PrepSaver</span>
+      <h2 class="section-title">Guidance built for <em>medical aspirants</em></h2>
+      <p class="section-sub">We sit between you and the platforms — so you get expert advice, not just a discount code.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature glass reveal">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M12 3l8 4v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V7l8-4z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h4>Verified Discounts</h4>
+        <p>Every offer is checked against the platform's live pricing so you never overpay.</p>
+      </div>
+      <div class="feature glass reveal">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.35-9.5-9C.5 7.5 3 3.8 6.5 4A5 5 0 0112 7a5 5 0 015.5-3c3.5-.2 6 3.5 4 8-2.5 4.65-9.5 9-9.5 9z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h4>Personalised Advice</h4>
+        <p>One conversation to understand your exam, timeline and budget before you buy anything.</p>
+      </div>
+      <div class="feature glass reveal">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h4>Fast WhatsApp Support</h4>
+        <p>Real replies, not chatbots — get your questions answered before and after enrolment.</p>
+      </div>
+      <div class="feature glass reveal">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18M8 4v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <h4>Flexible Plan Matching</h4>
+        <p>We map your budget to the right duration and add-ons instead of upselling the biggest plan.</p>
+      </div>
+      <div class="feature glass reveal">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none"><path d="M4 20V10M12 20V4M20 20v-7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <h4>Cashback Tracking</h4>
+        <p>We follow up on your cashback so it isn't a form you fill in and forget.</p>
+      </div>
+      <div class="feature glass reveal">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.6 5.6L21 8.3l-4.5 4.2L17.6 19 12 15.8 6.4 19l1.1-6.5L3 8.3l6.4-.7L12 2z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h4>No Hidden Fees</h4>
+        <p>The price we quote on WhatsApp is the price you pay — nothing added at checkout.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="vitals" aria-hidden="true">
+  <svg viewBox="0 0 1180 56" preserveAspectRatio="none"><path d="M0 28 L260 28 L290 8 L316 48 L344 28 L980 28 L1010 8 L1036 48 L1064 28 L1180 28"/></svg>
+</div>
+
+
+
+<div class="vitals" aria-hidden="true">
+  <svg viewBox="0 0 1180 56" preserveAspectRatio="none"><path d="M0 28 L260 28 L290 8 L316 48 L344 28 L980 28 L1010 8 L1036 48 L1064 28 L1180 28"/></svg>
+</div>
+
+<!-- ============================== FACULTY ================================== -->
+<section id="faculty">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <span class="eyebrow">Learn From The Best</span>
+      <h2 class="section-title">PrepLadder <em>Faculty</em></h2>
+      <p class="section-sub">A few of the named faculty behind the plans PrepSaver helps you access. Ask us on WhatsApp for the full subject-wise list.</p>
+    </div>
+    <button class="btn btn-ghost reveal" id="facultyToggle" style="margin-bottom:20px;">View Faculty List ▾</button>
+    <div class="faculty-grid glass reveal" id="facultyList" style="display:none;">
+      <div class="faculty-row"><span class="faculty-name">Dr. Shonali Chandra</span><span class="faculty-subject">OBS-GYN</span></div>
+      <div class="faculty-row"><span class="faculty-name">Dr. Vyshnavi Bommakanti</span><span class="faculty-subject">ENT</span></div>
+      <div class="faculty-row"><span class="faculty-name">Dr. Abhishek Jha</span><span class="faculty-subject">Radiology</span></div>
+      <div class="faculty-row"><span class="faculty-name">Dr. Ankit Goel</span><span class="faculty-subject">Psychiatry</span></div>
+      <div class="contact-note" style="margin-top:16px;">This list reflects the faculty we have confirmed details for so far — message us on WhatsApp and we'll share the full subject-wise faculty list.</div>
+      <a href="https://wa.me/917298903458?text=Faculty%20List" target="_blank" rel="noopener" class="btn btn-whatsapp" style="margin-top:14px;">Get Full Faculty List on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<div class="vitals" aria-hidden="true">
+  <svg viewBox="0 0 1180 56" preserveAspectRatio="none"><path d="M0 28 L260 28 L290 8 L316 48 L344 28 L980 28 L1010 8 L1036 48 L1064 28 L1180 28"/></svg>
+</div>
+
+<!-- ============================== COMPARISON ============================= -->
+<section id="compare">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <span class="eyebrow">Platform Comparison</span>
+      <h2 class="section-title">How the top platforms <em>stack up</em></h2>
+      <p class="section-sub">A quick side-by-side so you can pick the right platform before we help you save on it.</p>
+    </div>
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="highlight">PrepLadder</th>
+            <th>Marrow</th>
+            <th>Cerebellum</th>
+            <th>Doc Tutorials</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="feat-name">Video Lecture Library</td>
+            <td class="highlight"><span class="tick">✓</span> Extensive</td>
+            <td><span class="tick">✓</span> Extensive</td>
+            <td><span class="tick">✓</span> Moderate</td>
+            <td><span class="tick">✓</span> Moderate</td>
+          </tr>
+          <tr>
+            <td class="feat-name">Question Bank</td>
+            <td class="highlight"><span class="tick">✓</span> PrepLadder QBank</td>
+            <td><span class="tick">✓</span> Marrow QBank</td>
+            <td><span class="tick">✓</span> Included</td>
+            <td><span class="cross">✗</span> Add-on</td>
+          </tr>
+          <tr>
+            <td class="feat-name">All-India Test Series</td>
+            <td class="highlight"><span class="tick">✓</span></td>
+            <td><span class="tick">✓</span></td>
+            <td><span class="tick">✓</span></td>
+            <td><span class="tick">✓</span></td>
+          </tr>
+          <tr>
+            <td class="feat-name">Offline Download</td>
+            <td class="highlight"><span class="tick">✓</span></td>
+            <td><span class="tick">✓</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="tick">✓</span></td>
+          </tr>
+          <tr>
+            <td class="feat-name">PrepSaver Savings Support</td>
+            <td class="highlight"><span class="tick">✓</span> RABZ11 coupon + cashback</td>
+            <td><span class="tick">✓</span> Best-price guidance</td>
+            <td><span class="tick">✓</span> Best-price guidance</td>
+            <td><span class="tick">✓</span> Best-price guidance</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="price-note" style="margin-top:16px;">Feature availability changes periodically — always confirm current inclusions on the platform's official page before enrolling.</p>
+  </div>
+</section>
+
+<!-- ============================== FAQ ===================================== -->
+<section id="faq">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="section-title">Questions, <em>answered</em></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item glass reveal">
+        <div class="faq-q" data-target="f1"><h4>Is PrepSaver affiliated with PrepLadder?</h4><span class="faq-plus"></span></div>
+        <div class="faq-a" id="f1"><p>PrepSaver is an independent medical education consultant that helps students find and apply the best available offers on PrepLadder and other platforms. We are not the platform itself.</p></div>
+      </div>
+      <div class="faq-item glass reveal">
+        <div class="faq-q" data-target="f2"><h4>How do I use the RABZ11 coupon code?</h4><span class="faq-plus"></span></div>
+        <div class="faq-a" id="f2"><p>Copy the code from this page, message us on WhatsApp with the plan you're interested in, and we'll confirm the discounted price before you check out.</p></div>
+      </div>
+      <div class="faq-item glass reveal">
+        <div class="faq-q" data-target="f3"><h4>When do I receive my cashback?</h4><span class="faq-plus"></span></div>
+        <div class="faq-a" id="f3"><p>Send your enrolment confirmation on WhatsApp after purchase. Cashback eligibility and timelines are confirmed individually based on the plan you buy.</p></div>
+      </div>
+      <div class="faq-item glass reveal">
+        <div class="faq-q" data-target="f4"><h4>Is the free consultation really free?</h4><span class="faq-plus"></span></div>
+        <div class="faq-a" id="f4"><p>Yes. Fill the consultation form or message us directly — there's no charge for the guidance call.</p></div>
+      </div>
+      <div class="faq-item glass reveal">
+        <div class="faq-q" data-target="f5"><h4>What if I need help after I've enrolled?</h4><span class="faq-plus"></span></div>
+        <div class="faq-a" id="f5"><p>Our WhatsApp support stays open for existing students too — plan changes, extensions and general queries included.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="vitals" aria-hidden="true">
+  <svg viewBox="0 0 1180 56" preserveAspectRatio="none"><path d="M0 28 L260 28 L290 8 L316 48 L344 28 L980 28 L1010 8 L1036 48 L1064 28 L1180 28"/></svg>
+</div>
+
+<!-- ============================== TESTIMONIALS ============================ -->
+<section id="testimonials">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <span class="eyebrow">Student Voices</span>
+      <h2 class="section-title">What aspirants <em>are saying</em></h2>
+      <p class="section-sub" style="font-size:12.5px;opacity:.7;">Sample testimonials shown below — replace with verified student reviews before launch.</p>
+    </div>
+    <div class="testi-track">
+      <div class="testi glass reveal">
+        <div class="stars">★★★★★</div>
+        <p>"PrepSaver got me the same PrepLadder plan at a much better price, and the WhatsApp support actually replies fast."</p>
+        <div class="testi-who"><div class="testi-avatar">AR</div><div><b>Ananya R.</b><span>NEET PG Aspirant</span></div></div>
+      </div>
+      <div class="testi glass reveal">
+        <div class="stars">★★★★★</div>
+        <p>"The consultation call helped me pick the right duration plan instead of overspending on the longest one."</p>
+        <div class="testi-who"><div class="testi-avatar">SK</div><div><b>Sameer K.</b><span>FMGE Candidate</span></div></div>
+      </div>
+      <div class="testi glass reveal">
+        <div class="stars">★★★★☆</div>
+        <p>"Cashback took a little follow-up but the team stayed responsive the whole way through."</p>
+        <div class="testi-who"><div class="testi-avatar">PM</div><div><b>Priya M.</b><span>INI CET Aspirant</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== CONTACT ================================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <span class="eyebrow">Get In Touch</span>
+      <h2 class="section-title">Let's find your <em>best plan</em></h2>
+      <p class="section-sub">Reach out directly or book a free consultation — whichever is easier for you.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card glass reveal">
+        <div class="contact-item">
+          <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H8l-5 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.6"/></svg>
+          <div><b>WhatsApp</b><span>Fastest way to reach us, 7 days a week</span></div>
+        </div>
+        <div class="contact-item">
+          <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="1.6"/><path d="M4 6l8 7 8-7" stroke="currentColor" stroke-width="1.6"/></svg>
+          <div><b>Free Consultation Form</b><span>Tell us your exam and timeline, we'll follow up</span></div>
+        </div>
+        <div class="contact-item">
+          <svg class="ic" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.6"/></svg>
+          <div><b>Response Time</b><span>Usually within a few hours on WhatsApp</span></div>
+        </div>
+        <div style="display:flex;gap:14px;margin-top:24px;flex-wrap:wrap;">
+          <a href="https://wa.me/917298903458" target="_blank" rel="noopener" class="btn btn-whatsapp">WhatsApp Now</a>
+          <a href="https://forms.gle/V2mkSMtBYRtAfPXq5" target="_blank" rel="noopener" class="btn btn-primary">Get Free Medical Consultation</a>
+        </div>
+      </div>
+      <div class="contact-card glass reveal">
+        <h4 style="font-size:17px;color:var(--ink-000);margin-bottom:16px;">Quick message</h4>
+        <p class="section-sub" style="margin-top:0;margin-bottom:20px;">This form opens the Google Form in a new tab — no details are stored on this page.</p>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <a href="https://forms.gle/V2mkSMtBYRtAfPXq5" target="_blank" rel="noopener" class="btn btn-ghost btn-block">Open Consultation Form ↗</a>
+          <a href="https://wa.me/917298903458" target="_blank" rel="noopener" class="btn btn-ghost btn-block">Chat on WhatsApp ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FOOTER =================================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-col">
+        <div class="logo">
+          <svg class="logo-stetho" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="6" cy="3.2" r="1.1" fill="currentColor"/>
+            <circle cx="14" cy="3.2" r="1.1" fill="currentColor"/>
+            <path d="M6 4.2v3a3 3 0 003 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M14 4.2v3a3 3 0 01-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M9 10.2v2.6a4 4 0 008 0v-1.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="19" cy="9.4" r="1.5" stroke="currentColor" stroke-width="1.3"/>
+            <circle cx="13" cy="18.6" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <svg class="logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="24" cy="24" r="22" stroke="#3E7BFA" stroke-width="1.5" opacity="0.35"/>
+            <path d="M6 24H15L18.5 15L24 33L28 20L31 24H42" stroke="#3E7BFA" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="logo-word">Prep<em>Saver</em></span>
+        </div>
+        <p class="foot-desc">Medical Education Consultant helping NEET PG, FMGE, INI CET and Residency aspirants prepare smarter and spend less.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Courses</h5>
+        <a href="#courses">NEET PG / INI CET</a>
+        <a href="#courses">FMGE</a>
+        <a href="#courses">NEET SS Courses</a>
+        <a href="#courses">Residency Courses</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <a href="#why">Why PrepSaver</a>
+        <a href="#compare">Comparison</a>
+        <a href="#faq">FAQ</a>
+        <a href="#testimonials">Reviews</a>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <a href="https://wa.me/917298903458" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://forms.gle/V2mkSMtBYRtAfPXq5" target="_blank" rel="noopener">Consultation Form</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> PrepSaver. All rights reserved.</span>
+      <span>Made for medical aspirants, by people who get it.</span>
+    </div>
+    <p class="foot-disclaimer">PrepSaver is an independent education consultancy and is not officially affiliated with PrepLadder, Marrow, Cerebellum or Doc Tutorials. Course names and platform names are trademarks of their respective owners. Prices shown are indicative and subject to change — always confirm final pricing before payment.</p>
+  </div>
+</footer>
+
+<!-- ============================== FLOATING WHATSAPP ======================== -->
+<a href="https://wa.me/917298903458" target="_blank" rel="noopener" class="fab" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.97L2 22l5.24-1.38a9.9 9.9 0 004.8 1.22h.01c5.46 0 9.9-4.45 9.9-9.92C21.96 6.45 17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.2 8.2 0 01-1.26-4.4c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 012.41 5.83c0 4.55-3.7 8.24-8.25 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.04-.38-1.99-1.22-.73-.66-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.57.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
+</a>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- year ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- mobile nav ---------- */
+  var hamburger = document.getElementById('hamburger');
+  var navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', function(){
+    var open = navLinks.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ navLinks.classList.remove('open'); });
+  });
+
+  /* ---------- hero slideshow ---------- */
+  var slides = document.querySelectorAll('.hero-slide');
+  var dotsWrap = document.getElementById('heroDots');
+  var current = 0;
+
+  slides.forEach(function(_, i){
+    var dot = document.createElement('div');
+    dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', function(){ goToSlide(i); });
+    dotsWrap.appendChild(dot);
+  });
+  var dots = dotsWrap.querySelectorAll('.hero-dot');
+
+  function goToSlide(i){
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = i;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+  function nextSlide(){ goToSlide((current + 1) % slides.length); }
+  var slideTimer = setInterval(nextSlide, 3000);
+
+  // graceful fallback: if an image 404s, the .fallback gradient underneath
+  // already shows through since background-image simply fails to paint.
+
+  /* ---------- course accordion ---------- */
+  document.querySelectorAll('.course-head').forEach(function(head){
+    head.addEventListener('click', function(){
+      var course = head.closest('.course');
+      var wasOpen = course.classList.contains('open');
+      document.querySelectorAll('.course.open').forEach(function(c){ c.classList.remove('open'); });
+      if(!wasOpen){ course.classList.add('open'); }
+    });
+  });
+
+  /* ---------- FAQ accordion ---------- */
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click', function(){
+      var item = q.closest('.faq-item');
+      var wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(f){ f.classList.remove('open'); });
+      if(!wasOpen){ item.classList.add('open'); }
+    });
+  });
+
+  /* ---------- copy coupon code ---------- */
+  var copyBtn = document.getElementById('copyBtn');
+  var couponCode = document.getElementById('couponCode');
+  copyBtn.addEventListener('click', function(){
+    var text = couponCode.textContent.trim();
+    function done(){
+      copyBtn.textContent = 'Copied!';
+      copyBtn.classList.add('copied');
+      setTimeout(function(){
+        copyBtn.textContent = 'Copy Code';
+        copyBtn.classList.remove('copied');
+      }, 1800);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done).catch(function(){
+        fallbackCopy(text); done();
+      });
+    } else {
+      fallbackCopy(text); done();
+    }
+  });
+  function fallbackCopy(text){
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); }catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  /* ---------- motivation quotes ---------- */
+  var quotes = [
+    "Every chapter you finish tonight is a patient you'll treat better tomorrow.",
+    "Rank day is one date. Discipline is every date before it.",
+    "You don't need to feel ready. You need to open the book.",
+    "The syllabus doesn't care how tired you are — and neither does your future self.",
+    "Small revisions, repeated daily, beat one heroic all-nighter.",
+    "Nobody remembers the mock test you skipped. Everyone remembers the exam you passed.",
+    "Your competition is asleep right now. That's your window.",
+    "MBBS taught you to endure. NEET PG is just the next ward round.",
+    "You've survived anatomy vivas. A question bank can't scare you.",
+    "Consistency beats intensity — show up even on the days you don't feel like it.",
+    "The white coat is waiting. Don't let doubt keep it on the hanger.",
+    "Every wrong answer today is one less mistake on exam day.",
+    "You're not behind. You're exactly where your effort has placed you — so add more.",
+    "Burnout is real — rest on purpose, then come back and grind on purpose too.",
+    "A good QBank streak is just discipline wearing a scoreboard.",
+    "The version of you who clears this exam is built one study session at a time.",
+    "Comparing your chapter count to someone else's steals the time you could spend studying.",
+    "You chose medicine because you wanted to help people. This exam is just the gate.",
+    "Confidence isn't the absence of doubt — it's showing up anyway.",
+    "Future-you is counting on today-you to not give up."
+  ];
+  var quoteText = document.getElementById('quoteText');
+  var quoteDotsWrap = document.getElementById('quoteDots');
+  var quoteIndex = 0;
+
+  if(quoteText){
+    quotes.forEach(function(_, i){
+      var d = document.createElement('div');
+      d.className = 'quote-dot' + (i === 0 ? ' active' : '');
+      quoteDotsWrap.appendChild(d);
+    });
+    var quoteDots = quoteDotsWrap.querySelectorAll('.quote-dot');
+
+    function showQuote(i){
+      quoteText.classList.add('fade');
+      setTimeout(function(){
+        quoteText.textContent = quotes[i];
+        quoteText.classList.remove('fade');
+      }, 350);
+      quoteDots[quoteIndex].classList.remove('active');
+      quoteIndex = i;
+      quoteDots[quoteIndex].classList.add('active');
+    }
+    quoteText.textContent = quotes[0];
+    setInterval(function(){
+      showQuote((quoteIndex + 1) % quotes.length);
+    }, 4500);
+  }
+
+  /* ---------- faculty toggle ---------- */
+  var facultyToggle = document.getElementById('facultyToggle');
+  var facultyList = document.getElementById('facultyList');
+  if(facultyToggle){
+    facultyToggle.addEventListener('click', function(){
+      var isOpen = facultyList.style.display === 'block';
+      facultyList.style.display = isOpen ? 'none' : 'block';
+      facultyToggle.textContent = isOpen ? 'View Faculty List ▾' : 'Hide Faculty List ▴';
+    });
+  }
+
+  /* ---------- scroll reveal ---------- */
+  var revealItems = document.querySelectorAll('.reveal, .vitals');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealItems.forEach(function(el){ io.observe(el); });
+  } else {
+    revealItems.forEach(function(el){ el.classList.add('in-view'); });
+  }
+
+})();
+</script>
+</body>
+</html>
